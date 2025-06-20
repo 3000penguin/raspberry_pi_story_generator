@@ -1,0 +1,9 @@
+requests
+Pillow
+pygame
+SpeechRecognition
+gtts
+picamera
+RPi.GPIO
+gpiozero
+smbus-cffi
