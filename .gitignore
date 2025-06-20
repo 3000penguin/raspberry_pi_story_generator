@@ -1,0 +1,30 @@
+你可以在项目根目录下创建或编辑 `.gitignore` 文件，建议忽略以下内容：
+
+```
+# Python 缓存和虚拟环境
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+env/
+venv/
+
+# IDE 配置
+.idea/
+.vscode/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 生成的资源
+assets/generated_audio/
+assets/generated_images/
+
+# 其他
+*.log
+```
+
+这样可以避免提交无关的缓存、环境、IDE 配置和自动生成的文件。
