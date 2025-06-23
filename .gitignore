@@ -1,7 +1,3 @@
-你可以在项目根目录下创建或编辑 `.gitignore` 文件，建议忽略以下内容：
-
-```
-# Python 缓存和虚拟环境
 __pycache__/
 *.pyc
 *.pyo
@@ -11,7 +7,10 @@ __pycache__/
 env/
 venv/
 
-# IDE 配置
+# 测试
+test_api_clients
+
+# IDE
 .idea/
 .vscode/
 
@@ -19,7 +18,7 @@ venv/
 .DS_Store
 Thumbs.db
 
-# 生成的资源
+# 生成资源
 assets/generated_audio/
 assets/generated_images/
 

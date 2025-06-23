@@ -7,3 +7,5 @@ picamera
 RPi.GPIO
 gpiozero
 smbus-cffi
+httpx[socks]
+google-genai

@@ -2,10 +2,17 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="dbe1c538-ca65-427d-8b6f-1558ddc98fa8" name="Raspberry_Pi">
-        <fileTransfer rootFolder="/home/pi" accessType="SFTP" host="192.168.5.16" port="22" sshConfigId="087f4824-15ec-4d6a-802b-0079efe78d25" sshConfig="pi@192.168.5.16:22 password">
+      <webServer id="3e50262e-7690-45e0-ab4a-d5109a622c53" name="WiFi to Raspberry Pi">
+        <fileTransfer accessType="SFTP" host="192.168.5.16" port="22" sshConfigId="087f4824-15ec-4d6a-802b-0079efe78d25" sshConfig="pi@192.168.5.16:22 password">
           <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+            <advancedOptions keepAliveTimeout="0" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="4fc76480-931f-4458-a40d-6dc3959aecab" name="Mobile Hotspot -&gt; Raspberry Pi">
+        <fileTransfer accessType="SFTP" host="192.168.25.250" port="22" sshConfigId="79adf611-3630-49ea-939b-aa44fff3daea" sshConfig="pi@192.168.25.250:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
         </fileTransfer>
       </webServer>
