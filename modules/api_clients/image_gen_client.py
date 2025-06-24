@@ -16,7 +16,7 @@ class ImageGenClient:
 
     def generate_image(self,
                        prompt_text: str,
-                       model_name: str = "gemini-2.0-flash-preview-image-generation"):
+                       model_name: str = GEMINI_IMAGE_GENERATION_MODEL):
         """
         调用 Google Gemini API 进行文本转图片生成。
         成功时返回一个包含 (文本, 图片字节数据) 的元组。

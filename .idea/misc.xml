@@ -4,4 +4,7 @@
     <option name="sdkName" value="Remote Python 3.11.2 (sftp://pi@192.168.5.16:22/home/pi/raspberry_pi_story_generator/venv/bin/python3)" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Remote Python 3.11.2 (sftp://pi@192.168.5.16:22/home/pi/raspberry_pi_story_generator/venv/bin/python3)" project-jdk-type="Python SDK" />
+  <component name="PyPackaging">
+    <option name="earlyReleasesAsUpgrades" value="true" />
+  </component>
 </project>

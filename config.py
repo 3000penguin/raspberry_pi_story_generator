@@ -1,6 +1,10 @@
 # API Key
 GOOGLE_GENAI_API_KEY = "AIzaSyAGRY6esm9ZRMThDQmuhafvmdw11hNfe_4"
 
+# Model names for Gemini API
+GEMINI_TEXT_MODEL = "gemini-2.5-flash"
+GEMINI_IMAGE_GENERATION_MODEL = "gemini-2.0-flash-preview-image-generation"
+
 # Configuration for text generation
 STORY_TEMPERATURE = 0.7
 STORY_MAX_WORDS = 5000

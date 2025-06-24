@@ -20,30 +20,40 @@ class LLMClient:
 
     def generate_text(self,
                       prompt_text: str,
-                      model_name: str = "gemini-2.5-flash",
+                      model_name: str = GEMINI_TEXT_MODEL,
                       max_tokens: int = STORY_MAX_WORDS,
-                      temperature: float = STORY_TEMPERATURE) -> str | None:
+                      temperature: float = STORY_TEMPERATURE,
+                      config_param: types.GenerateContentConfig | None = None) -> str | None:
         """
         调用 Google Gemini API 生成文本内容。
         prompt_text: 用户输入的文本提示。
         model_name: 要使用的Gemini文本模型名称（例如"gemini-2.5-flash", "gemini-pro"）。
         max_tokens: 生成内容的最大 token 数量。
         temperature: 控制生成内容的随机性（0.0-1.0之间，越高越随机）。
+        config_param: 可选的额外配置参数，默认为 None。
 
         returns: 生成的文本内容，如果生成失败或未返回内容，则返回 None。
         """
+
         try:
             print(f"向 Gemini API 发送文本生成请求，模型：{model_name}...")
 
-            # 严格按照您提供的范例调用 client.models.generate_content
-            response = self.client.models.generate_content(
-                model=model_name,
-                contents=prompt_text,  # contents 可以直接是字符串
-                config=types.GenerateContentConfig(  # 使用 types.GenerationConfig 构建配置对象
-                    # system_instruction= None,  # 暂时设置为 None
+            if config_param is not None:
+                gen_config = types.GenerateContentConfig(
+                    **config_param.model_dump(),  # 将 config_param 转换为字典形式
                     temperature=temperature,
                     max_output_tokens=max_tokens
                 )
+            else:
+                gen_config = types.GenerateContentConfig(
+                    temperature=temperature,
+                    max_output_tokens=max_tokens
+                )
+
+            response = self.client.models.generate_content(
+                model=model_name,
+                contents=prompt_text,  # contents 可以直接是字符串
+                config=gen_config
             )
 
             if response.candidates and response.candidates[0].finish_reason.name != 'STOP':
