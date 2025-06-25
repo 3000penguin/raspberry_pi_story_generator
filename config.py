@@ -9,5 +9,7 @@ GEMINI_IMAGE_GENERATION_MODEL = "gemini-2.0-flash-preview-image-generation"
 STORY_TEMPERATURE = 0.7
 STORY_MAX_WORDS = 5000
 
-# Directory for storing generated images
+# Directory for storing assets
+ASSETS_ROOT_DIR = "assets"
 ASSETS_IMAGE_DIR = "assets/generated_images"
+ASSETS_AUDIO_DIR = "assets/generated_audio"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="WiFi to Raspberry Pi" remoteFilesAllowedToDisappearOnAutoupload="false" showAutoUploadSettingsWarning="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="pi@192.168.5.16:22 password" remoteFilesAllowedToDisappearOnAutoupload="false" compareModeInSync="TEXT" showAutoUploadSettingsWarning="false">
     <serverData>
       <paths name="Mobile Hotspot -&gt; Raspberry Pi">
         <serverdata>
@@ -10,6 +10,13 @@
         </serverdata>
       </paths>
       <paths name="WiFi to Raspberry Pi">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/pi/raspberry_pi_story_generator" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="pi@192.168.5.16:22 password">
         <serverdata>
           <mappings>
             <mapping deploy="/home/pi/raspberry_pi_story_generator" local="$PROJECT_DIR$" />
