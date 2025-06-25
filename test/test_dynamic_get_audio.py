@@ -9,8 +9,8 @@ from config import ASSETS_AUDIO_DIR
 
 def record_dynamic_audio(
     filename: str,
-    silence_thresh: int = 500,
-    silence_limit: float = 1.0) -> None:
+    silence_thresh: int = 15000,
+    silence_limit: float = 3.0) -> None:
 
     """根据讲话停顿动态录音，silence_thresh 为静音阈值，silence_limit 为允许的连续静音秒数"""
     FORMAT = pyaudio.paInt16

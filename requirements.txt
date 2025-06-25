@@ -1,7 +1,7 @@
 requests
-Pillow
+Pillow~=11.2.1
 pygame
-SpeechRecognition
+SpeechRecognition~=3.14.3
 gtts
 picamera
 RPi.GPIO
@@ -9,3 +9,6 @@ gpiozero
 smbus-cffi
 httpx[socks]
 google-genai
+PyAudio~=0.2.14
+pydantic~=2.11.7
+numpy~=2.3.1

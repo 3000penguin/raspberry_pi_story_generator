@@ -1,2 +1,0 @@
-/sys/firmware/devicetree/base/__symbols__/aux
-/sys/firmware/devicetree/base/aliases/aux
