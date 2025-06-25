@@ -1,7 +1,8 @@
 from google import genai
 from google.genai import types
 
-from config import GOOGLE_GENAI_API_KEY, GEMINI_TEXT_MODEL, STORY_MAX_WORDS, STORY_TEMPERATURE
+from config import (GOOGLE_GENAI_API_KEY, GEMINI_TEXT_MODEL, STORY_MAX_WORDS,
+                    STORY_TEMPERATURE)
 
 
 class LLMClient:

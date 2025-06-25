@@ -1,18 +1,16 @@
-import speech_recognition as sr
-from google import genai  # 核心修正：使用新库的导包方式
-
-import config  # 导入 config 来获取 API Key 和模型名称
-from modules.input_handler import InputHandler  # 导入 InputHandler，它现在负责PyAudio录音
-
 import os
 import sys
+
+import speech_recognition as sr
+
+from modules.input_handler import AudioRecorder
 
 os.close(sys.stderr.fileno())
 
 def run_input_handler_test():
     print("----- 正在测试 InputHandler 模块 (基于PyAudio动态录音 & Google语音识别) -----")
     # 初始化 InputHandler，它现在只负责录音。可以调整静音检测参数。
-    input_handler = InputHandler()
+    input_handler = AudioRecorder()
 
     # --- 核心：录制音频 ---
     print("\n--- 测试语音输入功能 (录音) ---")

@@ -1,10 +1,10 @@
-from modules.api_clients.image_gen_client import ImageGenClient
-import config
-import typing  # 导入 typing 用于类型提示
 import os
-import time  # 为了生成唯一的文件名
+import shutil
+import time
+import typing
 
-# 导入 StorySegment 类型定义，以确保类型一致性
+import config
+from modules.api_clients.image_gen_client import ImageGenClient
 from modules.story_generator import StorySegment
 
 
@@ -22,7 +22,6 @@ class ImageGenerator:
                     if os.path.isfile(file_path) or os.path.islink(file_path):
                         os.unlink(file_path)
                     elif os.path.isdir(file_path):
-                        import shutil
                         shutil.rmtree(file_path)
                 except Exception as e:
                     print(f"清空目录时删除 {file_path} 失败: {e}")

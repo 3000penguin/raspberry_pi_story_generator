@@ -1,8 +1,8 @@
 from io import BytesIO
 
-from PIL import Image
 from google import genai
 from google.genai import types
+from PIL import Image
 
 from config import GOOGLE_GENAI_API_KEY, GEMINI_IMAGE_GENERATION_MODEL
 

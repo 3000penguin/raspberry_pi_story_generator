@@ -1,10 +1,7 @@
-from modules.story_generator import StoryGenerator, StorySegment, StoryResponse
-from modules.image_generator import ImageGenerator
-
-# 导入配置和通用Google Gen AI库（用于初始化客户端）
 import config
-import os
-from google import genai  # 用于 genai.Client() 的初始化，并确保API Key被传递
+from modules.image_generator import ImageGenerator
+from modules.story_generator import StoryGenerator
+
 
 # --- 核心：在这里统一配置 Google Gen AI API Key ---
 # 确保 config.py 中 GOOGLE_GENAI_API_KEY 已配置
