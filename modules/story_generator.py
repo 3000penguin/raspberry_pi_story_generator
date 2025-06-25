@@ -1,5 +1,7 @@
 import os
 
+from google.genai import types
+
 from modules.api_clients.llm_client import LLMClient
 import config
 import json
@@ -18,14 +20,36 @@ class StoryResponse(typing.TypedDict):
     complete_story: typing.List[StorySegment]  # 列表包含多个 StorySegment
     pages: int
 
+json_schema_definition = {
+    "type": "object",
+    "properties": {
+        "complete_story": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/StorySegment"
+            }
+        },
+        "pages": {
+            "type": "integer"
+        }
+    },
+    "definitions": {
+        "StorySegment": {
+            "type": "object",
+            "properties": {
+                "image_prompt": {"type": "string"},
+                "audio_text": {"type": "string"},
+                "character_description": {"type": "string"}
+            },
+            "required": ["image_prompt", "audio_text", "character_description"]
+        }
+    }
+}
 
 class StoryGenerator:
     def __init__(self):
         self.llm_client = LLMClient(api_key=config.GOOGLE_GENAI_API_KEY)
-        # 确保图片输出目录存在
         os.makedirs(config.ASSETS_IMAGE_DIR, exist_ok=True)
-        # 为了在这里使用os.makedirs，需要导入os模块
-        # import os
 
     def generate_structured_story(self, theme: str, num_pages: int) -> typing.Tuple[
                                                                            typing.List[StorySegment], str] | None:
@@ -60,15 +84,40 @@ class StoryGenerator:
         print(f"正在生成结构化故事，主题：'{theme}'，页数：{num_pages}...")
 
         try:
+            story_segment_schema = types.Schema(
+                type=types.Type.OBJECT,
+                properties={
+                    "image_prompt": types.Schema(type=types.Type.STRING),
+                    "audio_text": types.Schema(type=types.Type.STRING),
+                    "character_description": types.Schema(type=types.Type.STRING)
+                },
+                required=["image_prompt", "audio_text", "character_description"]
+            )
+            structured_response_schema = types.Schema(
+                type=types.Type.OBJECT,
+                properties={
+                    "complete_story": types.Schema(
+                        type=types.Type.ARRAY,
+                        items=story_segment_schema  # 直接内联 StorySegment 的 Schema
+                    ),
+                    "pages": types.Schema(type=types.Type.INTEGER)
+                },
+                # 注意：如果需要 $ref，通常 definitions 应该在顶层。
+                # 但这里我们尝试直接内联，减少 $ref 带来的复杂性
+            )
+            # 构建 types.GenerateContentConfig 对象
+            structured_output_config = types.GenerateContentConfig(
+                response_mime_type="application/json",
+                response_schema=structured_response_schema  # 传递 types.Schema 对象
+            )
+
             # 调用LLM客户端生成文本，并明确要求JSON输出和Schema
             response_text = self.llm_client.generate_text(
                 prompt_text=prompt,
                 model_name=config.GEMINI_TEXT_MODEL,
                 max_tokens=config.STORY_MAX_WORDS,  # 这里的max_tokens要足够大以容纳JSON
                 temperature=config.STORY_TEMPERATURE,
-                # 注意：gemini.GenerativeModel.generate_content直接支持response_mime_type和response_schema
-                # 但llm_client.generate_story 是封装后的，如果需要，需在llm_client内部传递
-                # 这里假设prompt已经足够引导模型输出JSON
+                config_param=structured_output_config  # 使用预定义的配置
             )
 
             if not response_text:

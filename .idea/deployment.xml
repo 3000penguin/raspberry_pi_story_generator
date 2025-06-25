@@ -14,6 +14,9 @@
           <mappings>
             <mapping deploy="/home/pi/raspberry_pi_story_generator" local="$PROJECT_DIR$" />
           </mappings>
+          <excludedPaths>
+            <excludedPath path="/home/pi/raspberry_pi_story_generator/venv" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>

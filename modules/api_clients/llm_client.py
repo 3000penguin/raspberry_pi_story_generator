@@ -1,11 +1,7 @@
 from google import genai
 from google.genai import types
-from config import *
-import base64
-from PIL import Image
-from io import BytesIO
-import os
-import time
+
+from config import GOOGLE_GENAI_API_KEY, GEMINI_TEXT_MODEL, STORY_MAX_WORDS, STORY_TEMPERATURE
 
 
 class LLMClient:
@@ -38,22 +34,17 @@ class LLMClient:
         try:
             print(f"向 Gemini API 发送文本生成请求，模型：{model_name}...")
 
+            gen_config = {'temperature': temperature, 'max_output_tokens': max_tokens}
+
             if config_param is not None:
-                gen_config = types.GenerateContentConfig(
-                    **config_param.model_dump(),  # 将 config_param 转换为字典形式
-                    temperature=temperature,
-                    max_output_tokens=max_tokens
-                )
-            else:
-                gen_config = types.GenerateContentConfig(
-                    temperature=temperature,
-                    max_output_tokens=max_tokens
-                )
+                gen_config.update(config_param)
+
+            gen_content_config_obj = types.GenerateContentConfig(**gen_config)
 
             response = self.client.models.generate_content(
                 model=model_name,
                 contents=prompt_text,  # contents 可以直接是字符串
-                config=gen_config
+                config=gen_content_config_obj
             )
 
             if response.candidates and response.candidates[0].finish_reason.name != 'STOP':
