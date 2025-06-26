@@ -31,7 +31,11 @@ class AudioRecorder:
 
         # 明确禁用摄像头和图片描述功能
         self.camera = None
-        print("InputHandler initialized. Image input (camera/AI description) is disabled.")
+        print("AudioRecorder initialized. Image input (camera/AI description) is disabled.")
+
+    def __del__(self):
+        if self.audio:
+            self.audio.terminate()
 
     def record_audio(
         self,
@@ -49,17 +53,16 @@ class AudioRecorder:
         output_path = os.path.join(ASSETS_AUDIO_DIR, filename)
         os.makedirs(ASSETS_AUDIO_DIR, exist_ok=True)
 
-        audio = pyaudio.PyAudio()
         try:
             print("开始动态录音...")
             time.sleep(0.5)
 
-            stream = audio.open(
-                format= self.FORMAT,
-                channels= self.CHANNELS,
-                rate= self.RATE,
+            stream = self.audio.open(
+                format=self.FORMAT,
+                channels=self.CHANNELS,
+                rate=self.RATE,
                 input=True,
-                frames_per_buffer= self.CHUNK
+                frames_per_buffer=self.CHUNK
             )
         except Exception as e:
             print(f"录音设备初始化失败: {e}")
@@ -85,11 +88,10 @@ class AudioRecorder:
 
         stream.stop_stream()
         stream.close()
-        audio.terminate()
 
         with wave.open(output_path, 'wb') as wf:
             wf.setnchannels(self.CHANNELS)
-            wf.setsampwidth(audio.get_sample_size(self.FORMAT))
+            wf.setsampwidth(self.audio.get_sample_size(self.FORMAT))
             wf.setframerate(self.RATE)
             wf.writeframes(b''.join(frames))
 

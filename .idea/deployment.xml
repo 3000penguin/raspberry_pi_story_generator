@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="WiFi to Raspberry Pi" remoteFilesAllowedToDisappearOnAutoupload="false" compareModeInSync="TEXT" showAutoUploadSettingsWarning="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="Mobile Hotspot -&gt; Raspberry Pi" remoteFilesAllowedToDisappearOnAutoupload="false" compareModeInSync="TEXT" showAutoUploadSettingsWarning="false">
     <serverData>
       <paths name="Mobile Hotspot -&gt; Raspberry Pi">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/pi/raspberry_pi_story_generator" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/raspberry_pi_story_generator" local="$PROJECT_DIR$" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath path="/raspberry_pi_story_generator/venv" />
+          </excludedPaths>
         </serverdata>
       </paths>
       <paths name="WiFi to Raspberry Pi">
