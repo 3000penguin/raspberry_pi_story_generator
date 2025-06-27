@@ -20,31 +20,31 @@ class StoryResponse(typing.TypedDict):
     complete_story: typing.List[StorySegment]  # 列表包含多个 StorySegment
     pages: int
 
-json_schema_definition = {
-    "type": "object",
-    "properties": {
-        "complete_story": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/StorySegment"
-            }
-        },
-        "pages": {
-            "type": "integer"
-        }
-    },
-    "definitions": {
-        "StorySegment": {
-            "type": "object",
-            "properties": {
-                "image_prompt": {"type": "string"},
-                "audio_text": {"type": "string"},
-                "character_description": {"type": "string"}
-            },
-            "required": ["image_prompt", "audio_text", "character_description"]
-        }
-    }
-}
+# json_schema_definition = {
+#     "type": "object",
+#     "properties": {
+#         "complete_story": {
+#             "type": "array",
+#             "items": {
+#                 "$ref": "#/definitions/StorySegment"
+#             }
+#         },
+#         "pages": {
+#             "type": "integer"
+#         }
+#     },
+#     "definitions": {
+#         "StorySegment": {
+#             "type": "object",
+#             "properties": {
+#                 "image_prompt": {"type": "string"},
+#                 "audio_text": {"type": "string"},
+#                 "character_description": {"type": "string"}
+#             },
+#             "required": ["image_prompt", "audio_text", "character_description"]
+#         }
+#     }
+# }
 
 class StoryGenerator:
     def __init__(self):
@@ -102,8 +102,6 @@ class StoryGenerator:
                     ),
                     "pages": types.Schema(type=types.Type.INTEGER)
                 },
-                # 注意：如果需要 $ref，通常 definitions 应该在顶层。
-                # 但这里我们尝试直接内联，减少 $ref 带来的复杂性
             )
             # 构建 types.GenerateContentConfig 对象
             structured_output_config = types.GenerateContentConfig(

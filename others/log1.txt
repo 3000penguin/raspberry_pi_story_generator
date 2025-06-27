@@ -1,0 +1,100 @@
+(.RaspiVenv) pi@raspberrypi:~/raspberry_pi_story_generator $ python3 -m test.test_presentation_mng
+pygame 2.6.1 (SDL 2.28.4, Python 3.11.2)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+----- 正在测试 PresentationManager 模块 -----
+Pygame 初始化失败，切换到测试模式: cannot open resource
+无法加载字体文件 /usr/share/fonts/truetype/noto/NotoSansSC-Regular.ttf: cannot open resource
+运行在测试模式下（无图形界面显示）
+
+===== 第 1 页 =====
+文本内容: 这是一只可爱的小恐龙丁丁，它住在绿色的森林里。丁丁喜欢吃苹果，也喜欢和小蝴蝶一起玩耍。它的梦想是有一天能够飞到云朵上面去。
+图片路径: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_0.png
+图片存在: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_0.png
+==================================================
+测试模式：模拟用户输入 (自动翻页)
+模拟用户操作: prev
+测试进度: 1/10
+
+===== 第 3 页 =====
+文本内容: 经过一番努力，小恐龙丁丁和小兔子终于找到了兔妈妈。它们开心地跳了起来，丁丁也因此明白，帮助别人是多么快乐的一件事。
+图片路径: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_2.png
+图片存在: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_2.png
+==================================================
+测试模式：模拟用户输入 (自动翻页)
+模拟用户操作: next
+测试进度: 2/10
+
+===== 第 1 页 =====
+文本内容: 这是一只可爱的小恐龙丁丁，它住在绿色的森林里。丁丁喜欢吃苹果，也喜欢和小蝴蝶一起玩耍。它的梦想是有一天能够飞到云朵上面去。
+图片路径: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_0.png
+图片存在: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_0.png
+==================================================
+测试模式：模拟用户输入 (自动翻页)
+模拟用户操作: next
+测试进度: 3/10
+
+===== 第 2 页 =====
+文本内容: 一天，丁丁在森林里遇到了一只迷路的小兔子，小兔子很害怕。丁丁决定帮助它找妈妈，它们一起踏上了寻找之路。
+图片路径: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_1.png
+图片存在: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_1.png
+==================================================
+测试模式：模拟用户输入 (自动翻页)
+模拟用户操作: prev
+测试进度: 4/10
+
+===== 第 1 页 =====
+文本内容: 这是一只可爱的小恐龙丁丁，它住在绿色的森林里。丁丁喜欢吃苹果，也喜欢和小蝴蝶一起玩耍。它的梦想是有一天能够飞到云朵上面去。
+图片路径: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_0.png
+图片存在: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_0.png
+==================================================
+测试模式：模拟用户输入 (自动翻页)
+模拟用户操作: prev
+测试进度: 5/10
+
+===== 第 3 页 =====
+文本内容: 经过一番努力，小恐龙丁丁和小兔子终于找到了兔妈妈。它们开心地跳了起来，丁丁也因此明白，帮助别人是多么快乐的一件事。
+图片路径: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_2.png
+图片存在: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_2.png
+==================================================
+测试模式：模拟用户输入 (自动翻页)
+模拟用户操作: next
+测试进度: 6/10
+
+===== 第 1 页 =====
+文本内容: 这是一只可爱的小恐龙丁丁，它住在绿色的森林里。丁丁喜欢吃苹果，也喜欢和小蝴蝶一起玩耍。它的梦想是有一天能够飞到云朵上面去。
+图片路径: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_0.png
+图片存在: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_0.png
+==================================================
+测试模式：模拟用户输入 (自动翻页)
+模拟用户操作: prev
+测试进度: 7/10
+
+===== 第 3 页 =====
+文本内容: 经过一番努力，小恐龙丁丁和小兔子终于找到了兔妈妈。它们开心地跳了起来，丁丁也因此明白，帮助别人是多么快乐的一件事。
+图片路径: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_2.png
+图片存在: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_2.png
+==================================================
+测试模式：模拟用户输入 (自动翻页)
+模拟用户操作: scroll_up
+测试进度: 8/10
+
+===== 第 2 页 =====
+文本内容: 一天，丁丁在森林里遇到了一只迷路的小兔子，小兔子很害怕。丁丁决定帮助它找妈妈，它们一起踏上了寻找之路。
+图片路径: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_1.png
+图片存在: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_1.png
+==================================================
+测试模式：模拟用户输入 (自动翻页)
+模拟用户操作: scroll_up
+测试进度: 9/10
+
+===== 第 1 页 =====
+文本内容: 这是一只可爱的小恐龙丁丁，它住在绿色的森林里。丁丁喜欢吃苹果，也喜欢和小蝴蝶一起玩耍。它的梦想是有一天能够飞到云朵上面去。
+图片路径: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_0.png
+图片存在: /home/pi/raspberry_pi_story_generator/test/../assets/generated_images/generated_image_0.png
+==================================================
+测试模式：模拟用户输入 (自动翻页)
+模拟用户操作: scroll_up
+测试进度: 10/10
+Pygame display cleaned up.
+
+----- PresentationManager 模块测试完成 -----

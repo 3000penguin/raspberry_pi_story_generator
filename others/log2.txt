@@ -1,0 +1,21 @@
+(.RaspiVenv) pi@raspberrypi:~/raspberry_pi_story_generator $ python3 -m test.test_presentation_mng
+pygame 2.6.1 (SDL 2.28.4, Python 3.11.2)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+----- 正在测试 PresentationManager 模块 -----
+找到可用字体: /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
+初始化模式: 图形模式
+当前显示驱动: x11
+成功创建 (800, 480) 显示窗口
+Pygame 图形模式初始化成功!
+Pygame display cleaned up.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/pi/raspberry_pi_story_generator/test/test_presentation_mng.py", line 95, in <module>
+    run_presentation_manager_test()
+  File "/home/pi/raspberry_pi_story_generator/test/test_presentation_mng.py", line 53, in run_presentation_manager_test
+    manager.display_story_page(
+  File "/home/pi/raspberry_pi_story_generator/modules/presentation_manager.py", line 288, in display_story_page
+    self.font_text.get_bbox(line)[3] - self.font_text.get_bbox(line)[1] + 5),
+    ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'FreeTypeFont' object has no attribute 'get_bbox'. Did you mean: 'getbbox'?
