@@ -3,6 +3,7 @@ import os
 from google.genai import types
 
 from modules.api_clients.llm_client import LLMClient
+from modules.api_clients.tts_client import tts_client
 import config
 import json
 import typing  # 导入 typing 模块用于类型提示
@@ -13,6 +14,7 @@ class StorySegment(typing.TypedDict):
     image_prompt: str
     audio_text: str
     character_description: str  # 在此阶段仅作为模型输出，后期可用于统一角色生成图片
+    audio_path: str  # 添加音频文件路径字段
 
 
 # 定义整体故事响应结构
@@ -72,7 +74,7 @@ class StoryGenerator:
                     {{
                         "image_prompt": "(明确的艺术风格，如儿童绘本风格，所有角色风格一致，无暴力) 对场景、其中角色和背景的完整描述，20字以内。随着故事推进，逐步变换场景。",
                         "audio_text": "一句对话/旁白，概括场景核心内容。",
-                        "character_description": "没有人物，只有动物和物体。用艺术风格参考（例如“Pixar风格”，“吉卜力”）描述所有角色（名称、特征、服装等保持一致），30字以内。"
+                        "character_description": "没有人物，只有动物和物体。用艺术风格参考（例如"Pixar风格"，"吉卜力"）描述所有角色（名称、特征、服装等保持一致），30字以内。"
                     }},
                     // ... 更多场景
                 ],
@@ -136,6 +138,21 @@ class StoryGenerator:
                 num_pages_returned = story_data.get('pages')
 
                 if complete_story_list and isinstance(complete_story_list, list) and num_pages_returned == num_pages:
+                    # 为每个故事段落生成音频文件
+                    print("正在为故事段落生成音频文件...")
+                    for i, segment in enumerate(complete_story_list):
+                        audio_text = segment.get('audio_text')
+                        if audio_text:
+                            # 为每个段落生成唯一的音频文件名
+                            filename = f"story_page_{i+1}.mp3"
+                            audio_path = tts_client.generate_speech(audio_text, filename)
+                            if audio_path:
+                                segment['audio_path'] = audio_path
+                                print(f"第 {i+1} 页音频已生成: {filename}")
+                            else:
+                                print(f"第 {i+1} 页音频生成失败")
+                                segment['audio_path'] = None
+
                     # 提取一个整体的故事摘要，可以简单拼接audio_text
                     story_summary = " ".join([seg['audio_text'] for seg in complete_story_list if 'audio_text' in seg])
                     return complete_story_list, story_summary
@@ -152,4 +169,27 @@ class StoryGenerator:
 
         except Exception as e:
             print(f"调用故事生成服务时发生错误: {e}")
+            return None
+
+    def generate_audio_for_story(self, story_segment: StorySegment) -> str | None:
+        """
+        为给定的故事段落生成音频。
+        story_segment: 单个故事段落，包含文本和其他元数据。
+        返回: 音频文件的路径或 None。
+        """
+        audio_text = story_segment.get("audio_text")
+        if not audio_text:
+            print("没有找到音频文本，无法生成音频。")
+            return None
+
+        # 调用 TTS 客户端生成音频
+        try:
+            audio_path = tts_client.generate_audio(
+                text=audio_text,
+                output_dir=config.ASSETS_AUDIO_DIR,  # 音频文件输出目录
+                file_name=f"story_segment_{story_segment.get('id')}.mp3"  # 生成唯一的文件名
+            )
+            return audio_path
+        except Exception as e:
+            print(f"生成音频时发生错误: {e}")
             return None

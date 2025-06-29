@@ -46,22 +46,30 @@ def audio_to_text_from_types(audio_wav_buffer: BytesIO):
 
 def record_and_transcribe_speech(filename: str = "temp_voice_input.wav",
                                  silence_thresh: int = 15000,
-                                 silence_limit: float = 3.0):
+                                 silence_limit: float = 3.0,
+                                 presentation_manager=None):
+    """
+    录制语音并转换为文本，支持状态显示
+    """
+    input_handler = AudioRecorder(filename=filename, silence_thresh=silence_thresh, silence_limit=silence_limit)
 
-    input_handler = AudioRecorder(filename = filename, silence_thresh = silence_thresh, silence_limit = silence_limit)
-    wav_bytes = input_handler.record_audio(filename = filename, silence_thresh = silence_thresh, silence_limit = silence_limit)
+    # 开始录音
+    print("开始录音...")
+    if presentation_manager:
+        presentation_manager.show_status_screen("正在录音...", "语音输入")
 
-    if wav_bytes:
-        print(f"录音成功")
-    else:
-        print("录音失败，无法进行语音识别。")
+    # 录制音频
+    audio_buffer = input_handler.record_audio()
 
-    text = audio_to_text_from_types(wav_bytes)
+    if not audio_buffer:
+        print("录音失败")
+        return None
 
-    print("\n=== 识别结果 ===")
-    if text:
-        recognized_text = text.strip()
-        return recognized_text
-    else:
-        return "语音识别失败或未返回文本。"
+    print("录音完成，正在转录...")
+    if presentation_manager:
+        presentation_manager.show_status_screen("正在转录文本...", "语音识别")
 
+    # 转录音频
+    text = audio_to_text_from_types(audio_buffer)
+
+    return text

@@ -22,7 +22,21 @@
           </excludedPaths>
         </serverdata>
       </paths>
+      <paths name="pi@192.168.5.16:22 password">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="pi@192.168.5.16:22 password (2)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/pi/raspberry_pi_story_generator" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="pi@192.168.5.16:22 password (3)">
         <serverdata>
           <mappings>
             <mapping deploy="/home/pi/raspberry_pi_story_generator" local="$PROJECT_DIR$" />
