@@ -5,7 +5,17 @@ import typing
 import time
 from typing import cast, Literal
 
+
+# noinspection PyMethodMayBeStatic
 class PresentationManager:
+    '''
+    用于管理故事页面的显示和用户交互。
+    支持图形模式和测试模式（无图形界面）。图形模式下使用 Pygame 显示故事页面，测试模式下仅在控制台输出信息。
+    支持中文字体显示，自动检测系统字体。
+    支持横屏和竖屏模式，根据屏幕尺寸自动调整布局。
+    支持翻页按钮和键盘输入进行页面翻阅。
+    支持图片和文本的智能换行显示。
+    '''
     def __init__(self, screen_size: tuple = (800, 480), test_mode: bool = None):
         self.screen_size = screen_size
         self.pygame_initialized = False
@@ -324,7 +334,7 @@ class PresentationManager:
             for line in wrapped_lines:
                 text_surface_pil = Image.new('RGBA',
                                              (int(self.font_text.getlength(line) + 5),
-                                                      self.font_text.getbbox(line)[3] - self.font_text.getbbox(line)[1] + 5),
+                                                   int(self.font_text.getbbox(line)[3] - self.font_text.getbbox(line)[1] + 5)),
                                              (255, 255, 255, 0))
 
                 ImageDraw.Draw(text_surface_pil).text((0, 0),

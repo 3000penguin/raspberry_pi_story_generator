@@ -8,6 +8,7 @@ GEMINI_IMAGE_GENERATION_MODEL = "gemini-2.0-flash-preview-image-generation"
 # Configuration for text generation
 STORY_TEMPERATURE = 0.7
 STORY_MAX_WORDS = 5000
+STORY_NUM_PAGES = 3
 
 # Directory for storing assets
 ASSETS_ROOT_DIR = "assets"

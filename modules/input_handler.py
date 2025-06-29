@@ -51,7 +51,6 @@ class AudioRecorder:
         """
 
         output_path = os.path.join(ASSETS_AUDIO_DIR, filename)
-        os.makedirs(ASSETS_AUDIO_DIR, exist_ok=True)
 
         try:
             print("开始动态录音...")
@@ -89,20 +88,21 @@ class AudioRecorder:
         stream.stop_stream()
         stream.close()
 
-        with wave.open(output_path, 'wb') as wf:
-            wf.setnchannels(self.CHANNELS)
-            wf.setsampwidth(self.audio.get_sample_size(self.FORMAT))
-            wf.setframerate(self.RATE)
-            wf.writeframes(b''.join(frames))
-
-        print(f"录音已保存至 {output_path}")
-
         wav_buffer = BytesIO()
-        with wave.open(wav_buffer, 'wb') as wf:
-            wf.setnchannels(self.CHANNELS)
-            wf.setsampwidth(self.audio.get_sample_size(self.FORMAT))
-            wf.setframerate(self.RATE)
-            wf.writeframes(b''.join(frames))
+
+        # 保存到文件
+        with wave.open(output_path, 'wb') as wf, wave.open(wav_buffer, 'wb') as wb:
+            self._write_wav_data(wf, frames)
+            print(f"录音已保存至 {output_path}")
+            self._write_wav_data(wb, frames)
+            print(f"录音数据已保存到内存缓冲区")
         wav_buffer.seek(0)
 
         return wav_buffer
+
+    def _write_wav_data(self, wav_file, frames):
+        """写入WAV文件数据的通用方法"""
+        wav_file.setnchannels(self.CHANNELS)
+        wav_file.setsampwidth(self.audio.get_sample_size(self.FORMAT))
+        wav_file.setframerate(self.RATE)
+        wav_file.writeframes(b''.join(frames))
