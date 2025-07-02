@@ -1,5 +1,4 @@
-# Raspberry Pi Story Generator
-# 图文故事生成器
+# 嵌入式就业培训课程设计 - 树莓派图文故事生成器
 ***
 **申请 API：https://aistudio.google.com/app/apikey**
 
